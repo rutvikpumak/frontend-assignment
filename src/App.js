@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Table from "./components/Table";
+import Pagination from "./components/Pagination";
+
 const App = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +29,15 @@ const App = () => {
 
   const columns = ["S.No.", "Percentage Funded", "Amount Pledged"];
 
-  const formattedData = data.map((item, index) => ({
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const formattedData = currentItems.map((item, index) => ({
     "S.No.": index + 1,
     "Percentage Funded": item["percentage.funded"],
     "Amount Pledged": item["amt.pledged"],
@@ -34,6 +46,12 @@ const App = () => {
   return (
     <div className="app">
       <Table columns={columns} data={formattedData} />
+      <Pagination
+        totalItems={data.length}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };
