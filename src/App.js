@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Table from "./components/Table";
 import Pagination from "./components/Pagination";
+import Loader from "./components/Loader";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -45,13 +46,20 @@ const App = () => {
 
   return (
     <div className="app">
-      <Table columns={columns} data={formattedData} />
-      <Pagination
-        totalItems={data.length}
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-      />
+      <h1 className="title">Highly Rated Kickstarter Projects</h1>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Table columns={columns} data={formattedData} />
+          <Pagination
+            totalItems={data.length}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </>
+      )}
     </div>
   );
 };

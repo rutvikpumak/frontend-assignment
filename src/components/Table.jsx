@@ -2,6 +2,10 @@ import React from "react";
 import "../styles/Table.css";
 
 const Table = ({ columns, data }) => {
+  if (data.length === 0) {
+    return <p>No data available.</p>;
+  }
+
   return (
     <table className="table">
       <thead>
