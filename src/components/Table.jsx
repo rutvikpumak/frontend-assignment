@@ -7,11 +7,13 @@ const Table = ({ columns, data }) => {
   }
 
   return (
-    <table className="table">
+    <table className="table" aria-labelledby="tableTitle">
       <thead>
         <tr>
           {columns.map((col, index) => (
-            <th key={index}>{col}</th>
+            <th key={index} scope="col">
+              {col}
+            </th>
           ))}
         </tr>
       </thead>
@@ -19,7 +21,9 @@ const Table = ({ columns, data }) => {
         {data.map((item, index) => (
           <tr key={index}>
             {Object.values(item).map((value, idx) => (
-              <td key={idx}>{value}</td>
+              <td key={idx} role="cell">
+                {value}
+              </td>
             ))}
           </tr>
         ))}
