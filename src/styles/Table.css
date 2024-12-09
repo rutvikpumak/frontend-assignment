@@ -7,11 +7,11 @@
 .table th,
 .table td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px;
   text-align: left;
 }
 
 .table th {
-  background-color: #f4f4f4;
+  background-color: #e0bbec;
   font-weight: bold;
 }

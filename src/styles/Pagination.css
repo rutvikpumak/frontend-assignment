@@ -2,10 +2,13 @@
   margin: 0 5px;
   padding: 5px 10px;
   cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid gray;
+  background-color: white;
 }
 
-.pagination button.active {
-  font-weight: bold;
-  color: white;
-  background-color: #007bff;
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
